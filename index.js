@@ -109,7 +109,6 @@ function addEmployee(){
                 if(err) console.log(err);
                 console.table(data)
                 getAllEmployees()
-                menu()
             })
         }
     )
@@ -157,7 +156,6 @@ function addRole(){
                 if(err) console.log(err);
                 console.table(data)
                 getAllRoles()
-                menu()
             })
         }
     )
@@ -188,7 +186,6 @@ function addDepartments(){
                 if(err) console.log(err);
                 console.table(data)
                 getAllDepartments()
-                menu()
             })
         }
     )
