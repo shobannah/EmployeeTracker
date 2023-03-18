@@ -12,7 +12,8 @@ to organize and plan business.
 
 ## Video Walkthrough
 
-![Video](./assets/images/employeetracker.webm)
+[employeetracker.webm](https://user-images.githubusercontent.com/116910257/226126127-3bf16ad8-61ad-4983-a6f5-20b39a9b598f.webm)
+
 
 ## Link
 
