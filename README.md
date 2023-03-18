@@ -3,8 +3,7 @@
 
 ## Description
 
-This employee tracker enables us to view and manage departments, roles, and employees in a company
-to organize and plan business.
+We built a command-line application from scratch to manage a company's employee database, using Node.js, Inquirer, and MySQL. This employee tracker enables us to view and manage departments, roles, and employees in a company to organize and plan business.
 
 ## Screenshot
 
