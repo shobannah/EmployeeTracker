@@ -51,23 +51,8 @@ function getAllEmployees(){
 
 };
 
-
-let employeeRole = [];
-let employeeManager = [];
-
 function addEmployee(){
 
-    db.query(`*SELECT title FROM emprole`, function (err, res) {
-        for (i = 0; i < res.length; i++) {
-            employeeRole.push(res[i].name)
-        }})
-
-
-    db.query(`*SELECT first_name FROM employee`, function (err, res) {
-    for (i = 0; i < res.length; i++) {
-        employeeManager.push(res[i].name)
-    }})
-    
     inquirer.prompt([
         {
         type: 'input',
@@ -83,13 +68,13 @@ function addEmployee(){
         type: 'list',
         name: 'role',
         message: "What is the employee's role?",
-        choices: employeeRole
+        choices: ['SELECT first_name FROM employee']
         },
         {
         type: 'list',
         name: 'manager',
         message: "Who is the employee's manager?",
-        choices: employeeManager
+        choices: [`SELECT first_name FROM employee`]
         }, 
     ])
     .then(

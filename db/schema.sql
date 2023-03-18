@@ -20,7 +20,7 @@ CREATE TABLE emprole(
 );
 
 CREATE TABLE employee(
-    INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  emp_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30),
   last_name VARCHAR(30),
   role_id INT,
