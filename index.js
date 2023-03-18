@@ -12,44 +12,65 @@ inquirer.prompt([
         type: 'list',
         name: 'function',
         message: "What would you like to do?",
-        choices: ["View all Employees", "Add Employee", "Update Employee Role", "View All Roles", "Add Role", "View all Departments", "Add Department"]
+        choices: ["View all Employees", "Add Employee", "View All Roles", "Add Role", "View all Departments", "Add Department"]
         }, 
     ])
     .then((answers) => {
         if (answers.function === "View all Employees") {
             getAllEmployees()
-            // menu()
         }if (answers.function === "Add Employee") {
             addEmployee()
-            // menu()
-        }if (answers.function === "Update Employee Role") {
-            updateRole()
-            // menu()
         }if (answers.function === "View All Roles") {
             getAllRoles()
-            // menu()
         }if (answers.function === "Add Role") {
             addRole()
-            // menu()
         }if (answers.function === "View all Departments") {
             getAllDepartments()
-            // menu()
         }if (answers.function === "Add Department") {
             addDepartments()
-            // menu()
         }
         
 });  
+
+function menu() {
+    inquirer.prompt([
+        {
+        type: 'list',
+        name: 'function',
+        message: "What would you like to do?",
+        choices: ["View all Employees", "Add Employee", "View All Roles", "Add Role", "View all Departments", "Add Department"]
+        }, 
+    ])
+    .then((answers) => {
+        if (answers.function === "View all Employees") {
+            getAllEmployees()
+        }if (answers.function === "Add Employee") {
+            addEmployee()
+        }if (answers.function === "View All Roles") {
+            getAllRoles()
+        }if (answers.function === "Add Role") {
+            addRole()
+        }if (answers.function === "View all Departments") {
+            getAllDepartments()
+        }if (answers.function === "Add Department") {
+            addDepartments()
+        }
+        
+});
+
+}
 
 function getAllEmployees(){
     db.query("SELECT * FROM EMPLOYEE", (err, data)=>
     {
         if(err) console.log(err);
         console.table(data)
-        // menu()
+        menu()
     })
 
 };
+
+
 
 function addEmployee(){
 
@@ -65,23 +86,17 @@ function addEmployee(){
         message: "What is the employee's last name?",
         },  
         {
-        type: 'list',
+        type: 'input',
         name: 'role',
-        message: "What is the employee's role?",
-        choices: [db.query('SELECT title FROM emprole', (data)=>{console.table(data)})]
+        message: "What is the employee's role ID?",
         },
         {
-        type: 'list',
+        type: 'input',
         name: 'manager',
-        message: "Who is the employee's manager?",
-        choices: [db.query(`SELECT first_name FROM employee`)]
+        message: "What is the manager's ID?",
         }, 
     ])
     .then(
-
-        
-
-
         answer=>{
             const firstName = answer.firstname
             const lastName = answer.lastname
@@ -92,8 +107,9 @@ function addEmployee(){
             db.query("insert into EMPLOYEE set ?", {first_name: firstName, last_name: lastName, role_id: role, manager_id: manager},(err, data)=>
             {
                 if(err) console.log(err);
-                console.table(data);
+                console.table(data)
                 getAllEmployees()
+                menu()
             })
         }
     )
@@ -105,9 +121,46 @@ function getAllRoles(){
     {
         if(err) console.log(err);
         console.table(data)
-        // menu()
+        menu()
     })
 
+};
+
+function addRole(){
+
+    inquirer.prompt([
+        {
+        type: 'input',
+        name: 'roletitle',
+        message: "What is the title of this role?",
+        },
+        {
+        type: 'input',
+        name: 'salary',
+        message: "What is the salary of this role?",
+        },  
+        {
+        type: 'input',
+        name: 'department',
+        message: "What is the department ID of this role?",
+        },
+    ])
+    .then(
+        answer=>{
+            const roletitle = answer.roletitle
+            const salary = answer.salary
+            const department = answer.department
+                       
+            
+            db.query("insert into EMPROLE set ?", {title: roletitle, salary: salary, department_id: department},(err, data)=>
+            {
+                if(err) console.log(err);
+                console.table(data)
+                getAllRoles()
+                menu()
+            })
+        }
+    )
 };
 
 function getAllDepartments(){
@@ -115,7 +168,7 @@ function getAllDepartments(){
     {
         if(err) console.log(err);
         console.table(data)
-        // menu()
+        menu()
     })
 
 };
@@ -133,8 +186,9 @@ function addDepartments(){
             db.query("insert into DEPARTMENT set ?", {dept_name: departmentName},(err, data)=>
             {
                 if(err) console.log(err);
-                console.table(data);
+                console.table(data)
                 getAllDepartments()
+                menu()
             })
         }
     )
