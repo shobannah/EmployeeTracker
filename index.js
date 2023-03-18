@@ -68,13 +68,13 @@ function addEmployee(){
         type: 'list',
         name: 'role',
         message: "What is the employee's role?",
-        choices: ['SELECT first_name FROM employee']
+        choices: [db.query('SELECT title FROM emprole', (data)=>{console.table(data)})]
         },
         {
         type: 'list',
         name: 'manager',
         message: "Who is the employee's manager?",
-        choices: [`SELECT first_name FROM employee`]
+        choices: [db.query(`SELECT first_name FROM employee`)]
         }, 
     ])
     .then(
